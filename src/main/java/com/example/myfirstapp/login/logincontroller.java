@@ -1,20 +1,23 @@
 package com.example.myfirstapp.login;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class logincontroller {
-    private Logger logger = LoggerFactory.getLogger(getClass());
-	@RequestMapping("/log-in")
-	public String login(@RequestParam String name, ModelMap model) {
-		model.put("name", name);
-		logger.debug("name if param is : {}", name);
+	@RequestMapping(value="/log-in", method=RequestMethod.GET)
+	public String login() {
 		return "login";
+	}
+	
+	@RequestMapping(value="/log-in", method=RequestMethod.POST)
+	public String Welcome(@RequestParam String name, @RequestParam String password, ModelMap map) {
+		map.addAttribute("name", name);
+		map.addAttribute("password", password);
+		return "welcome";
 	}
 }
