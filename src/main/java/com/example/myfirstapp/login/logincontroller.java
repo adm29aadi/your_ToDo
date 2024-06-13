@@ -22,7 +22,7 @@ public class logincontroller {
 		if(userauth.authenticateuser(name,password)) {
 		map.addAttribute("name", name);
 		map.addAttribute("password", password);
-		return "welcome";
+		return "we";
 		}
 		return "login";
 	}
